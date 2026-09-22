@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title} ?: 'Something went wrong'">Something went wrong</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments :: nav('home')}"></div>
+<main class="page error-page">
+    <p class="eyebrow">Oops</p>
+    <h1 th:text="${title} ?: 'Page not found'">Page not found</h1>
+    <p class="lede" th:text="${message} ?: 'We could not find that short link. It may have been deleted.'">
+        We could not find that short link.
+    </p>
+    <a class="btn btn-primary" href="/">Create a new short link</a>
+</main>
+<div th:replace="~{fragments :: footer}"></div>
+</body>
+</html>

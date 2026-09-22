@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortly — Shorten links. Track every click.</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments :: nav('home')}"></div>
+
+<main>
+    <section class="hero">
+        <div class="hero-copy">
+            <p class="eyebrow">Bitly-style short links</p>
+            <h1>Shorten your links.<br>Track every click.</h1>
+            <p class="lede">Create branded short URLs, optional expiry dates, QR codes, and a live click dashboard — all from one Spring Boot app.</p>
+        </div>
+
+        <form id="shorten-form" class="shorten-card" autocomplete="off">
+            <label class="field">
+                <span>Long URL</span>
+                <input id="originalUrl" name="originalUrl" type="text" placeholder="https://example.com/very/long/path" required>
+            </label>
+            <div class="field-row">
+                <label class="field">
+                    <span>Title <em>(optional)</em></span>
+                    <input id="title" name="title" type="text" maxlength="200" placeholder="Campaign landing page">
+                </label>
+                <label class="field">
+                    <span>Custom alias <em>(optional)</em></span>
+                    <input id="customAlias" name="customAlias" type="text" maxlength="30" placeholder="my-launch">
+                </label>
+            </div>
+            <label class="field">
+                <span>Expires at <em>(optional)</em></span>
+                <input id="expiresAt" name="expiresAt" type="datetime-local">
+            </label>
+            <button type="submit" class="btn btn-primary" id="shorten-btn">Shorten URL</button>
+            <p class="form-hint">Aliases must be 3–30 characters: letters, numbers, hyphen, or underscore.</p>
+        </form>
+    </section>
+
+    <section id="result" class="result-card hidden" aria-live="polite"></section>
+
+    <section class="stats-grid" id="dashboard-stats">
+        <article class="stat-card"><p class="stat-label">Total links</p><p class="stat-value" data-stat="totalLinks">—</p></article>
+        <article class="stat-card"><p class="stat-label">Total clicks</p><p class="stat-value" data-stat="totalClicks">—</p></article>
+        <article class="stat-card"><p class="stat-label">Active links</p><p class="stat-value" data-stat="activeLinks">—</p></article>
+        <article class="stat-card"><p class="stat-label">Clicks today</p><p class="stat-value" data-stat="clicksToday">—</p></article>
+    </section>
+
+    <section class="features">
+        <article>
+            <h3>Custom aliases</h3>
+            <p>Use memorable names like <code>/launch</code> instead of random codes.</p>
+        </article>
+        <article>
+            <h3>Click analytics</h3>
+            <p>See daily traffic, devices, browsers, and referrers for every short link.</p>
+        </article>
+        <article>
+            <h3>QR codes</h3>
+            <p>Download a QR image for posters, slides, or packaging in one click.</p>
+        </article>
+    </section>
+</main>
+
+<div th:replace="~{fragments :: footer}"></div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="/js/app.js"></script>
+</body>
+</html>

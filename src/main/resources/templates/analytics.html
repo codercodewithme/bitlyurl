@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics — Shortly</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments :: nav('links')}"></div>
+
+<main class="page" data-code th:attr="data-code=${code}">
+    <a class="back-link" href="/links">← All links</a>
+    <div class="page-head">
+        <div>
+            <p class="eyebrow">Analytics</p>
+            <h1 id="analytics-title">Link insights</h1>
+            <p id="analytics-sub" class="lede"></p>
+        </div>
+        <div class="actions">
+            <button type="button" class="btn btn-ghost" id="copy-short">Copy short URL</button>
+            <a class="btn btn-primary" id="open-short" target="_blank" rel="noopener">Open link</a>
+        </div>
+    </div>
+
+    <section class="stats-grid compact">
+        <article class="stat-card"><p class="stat-label">Total clicks</p><p class="stat-value" id="total-clicks">—</p></article>
+        <article class="stat-card"><p class="stat-label">Status</p><p class="stat-value" id="link-status">—</p></article>
+        <article class="stat-card"><p class="stat-label">Created</p><p class="stat-value small" id="created-at">—</p></article>
+        <article class="stat-card"><p class="stat-label">Expires</p><p class="stat-value small" id="expires-at">Never</p></article>
+    </section>
+
+    <section class="split">
+        <article class="panel">
+            <h2>Clicks — last 14 days</h2>
+            <canvas id="clicks-chart" height="120"></canvas>
+        </article>
+        <article class="panel qr-panel">
+            <h2>QR code</h2>
+            <img id="qr-image" alt="QR code for short URL" width="220" height="220">
+            <a id="qr-download" class="btn btn-ghost" download="short-link-qr.png">Download PNG</a>
+        </article>
+    </section>
+
+    <section class="split three">
+        <article class="panel"><h2>Devices</h2><ul id="devices" class="breakdown"></ul></article>
+        <article class="panel"><h2>Browsers</h2><ul id="browsers" class="breakdown"></ul></article>
+        <article class="panel"><h2>Referrers</h2><ul id="referrers" class="breakdown"></ul></article>
+    </section>
+
+    <section class="panel">
+        <h2>Recent clicks</h2>
+        <div class="table-wrap">
+            <table class="data-table">
+                <thead>
+                <tr>
+                    <th>When</th>
+                    <th>Device</th>
+                    <th>Browser</th>
+                    <th>Referrer</th>
+                    <th>IP</th>
+                </tr>
+                </thead>
+                <tbody id="recent-clicks"></tbody>
+            </table>
+        </div>
+    </section>
+</main>
+
+<div th:replace="~{fragments :: footer}"></div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/analytics.js"></script>
+</body>
+</html>

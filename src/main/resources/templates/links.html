@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My links — Shortly</title>
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{fragments :: nav('links')}"></div>
+
+<main class="page">
+    <div class="page-head">
+        <div>
+            <p class="eyebrow">Library</p>
+            <h1>Your short links</h1>
+        </div>
+        <a class="btn btn-primary" href="/">Create new</a>
+    </div>
+
+    <div class="toolbar">
+        <input id="search" type="search" placeholder="Search title, code, or destination">
+        <p id="link-count" class="muted"></p>
+    </div>
+
+    <div class="table-wrap">
+        <table class="data-table">
+            <thead>
+            <tr>
+                <th>Link</th>
+                <th>Destination</th>
+                <th>Clicks</th>
+                <th>Created</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody id="links-body">
+            <tr><td colspan="5" class="muted">Loading links…</td></tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<div th:replace="~{fragments :: footer}"></div>
+<div id="toast" class="toast hidden" role="status"></div>
+<script src="/js/app.js"></script>
+<script src="/js/links.js"></script>
+</body>
+</html>
